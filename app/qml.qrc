@@ -1,0 +1,23 @@
+<RCC>
+    <qresource prefix="/">
+        <file>actions/ActionTypes.qml</file>
+        <file>actions/AppActions.qml</file>
+        <file>actions/qmldir</file>
+        <file>constants/Constants.qml</file>
+        <file>constants/qmldir</file>
+        <file>main.qml</file>
+        <file>middlewares/qmldir</file>
+        <file>middlewares/SystemMiddleware.qml</file>
+        <file>qtquickcontrols2.conf</file>
+        <file>stores/qmldir</file>
+        <file>stores/MainStore.qml</file>
+        <file>stores/qmldir</file>
+        <file>stores/RootStore.qml</file>
+        <file>ui/pages/DiscoverPage.qml</file>
+        <file>ui/pages/LibraryPage.qml</file>
+        <file>ui/pages/qmldir</file>
+        <file>ui/pages/SearchPage.qml</file>
+        <file>ui/theme/qmldir</file>
+        <file>ui/theme/Theme.qml</file>
+    </qresource>
+</RCC>
