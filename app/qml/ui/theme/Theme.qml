@@ -7,5 +7,4 @@ QtObject {
     readonly property int spacing_md: 10
     readonly property int spacing_lg: 20
     readonly property int spacing_xl: 30
-
 }

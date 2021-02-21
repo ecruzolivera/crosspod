@@ -42,3 +42,4 @@ vendor
 .vscode
 .directory
 CMakeLists.txt.user
+crosspod-rs/target/
