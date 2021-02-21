@@ -35,6 +35,10 @@ include(cmake/CppCheckConfig.cmake)
 include(cmake/ClangTidyConfig.cmake)
 # include(cmake/StaticAnalyzers.cmake)
 
+# Rust integration
+find_package(Corrosion REQUIRED)
+corrosion_import_crate(MANIFEST_PATH crosspod-rs/Cargo.toml)
+
 add_subdirectory(app)
 
 option(ENABLE_TESTING "Enable Test Builds" ON)

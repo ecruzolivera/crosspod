@@ -6,7 +6,7 @@ set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
-include(Dependencies.cmake)
+include(cmake/FindQuickFlux.cmake)
 
 set(QML_IMPORT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/qml ${CMAKE_BINARY_DIR}/imports CACHE STRING "" FORCE)
 
@@ -56,4 +56,4 @@ add_dependencies(${PROJECT_NAME} QuickFlux::quickflux)
 target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/cpp)
 target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Core
                                               Qt${QT_VERSION_MAJOR}::Quick)
-target_link_libraries(${PROJECT_NAME} PRIVATE QuickFlux::quickflux)
+target_link_libraries(${PROJECT_NAME} PRIVATE QuickFlux::quickflux crosspod-rs)
