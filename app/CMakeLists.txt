@@ -8,11 +8,9 @@ set(CMAKE_AUTORCC ON)
 
 include(Dependencies.cmake)
 
-list(APPEND QML_IMPORT_PATH ${CMAKE_CURRENT_SOURCE_DIR})
-list(REMOVE_DUPLICATES QML_IMPORT_PATH)
+set(QML_IMPORT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/qml ${CMAKE_BINARY_DIR}/imports CACHE STRING "" FORCE)
 
-set(QML_IMPORT_PATH "${QML_DIRS}" CACHE STRING "Qt Creator 4.1 extra qml import paths")
-
+message(STATUS "QML_IMPORT_PATH: ${QML_IMPORT_PATH}")
 
 # QtCreator supports the following variables for Android, which are identical to
 # qmake Android variables. Check https://doc.qt.io/qt/deployment-android.html
@@ -35,8 +33,8 @@ find_package(
   REQUIRED)
 
 set(TS_FILES ${PROJECT_NAME}_en_US.ts)
-
-set(PROJECT_SOURCES main.cpp qml.qrc ${TS_FILES})
+set(CPP_FILES)
+set(PROJECT_SOURCES main.cpp qml/qml.qrc ${TS_FILES} ${CPP_FILES})
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
   qt_add_executable(${PROJECT_NAME} ${PROJECT_SOURCES})
@@ -55,6 +53,7 @@ target_compile_definitions(
   PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
 
 add_dependencies(${PROJECT_NAME} QuickFlux::quickflux)
-target_link_libraries(${PROJECT_NAME} PRIVATE QuickFlux::quickflux)
+target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/cpp)
 target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Core
                                               Qt${QT_VERSION_MAJOR}::Quick)
+target_link_libraries(${PROJECT_NAME} PRIVATE QuickFlux::quickflux)

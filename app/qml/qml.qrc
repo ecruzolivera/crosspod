@@ -13,7 +13,7 @@
         <file>stores/MainStore.qml</file>
         <file>stores/qmldir</file>
         <file>stores/RootStore.qml</file>
-        <file>ui/pages/DiscoverPage.qml</file>
+        <file>ui/pages/PlayListPage.qml</file>
         <file>ui/pages/LibraryPage.qml</file>
         <file>ui/pages/qmldir</file>
         <file>ui/pages/SearchPage.qml</file>

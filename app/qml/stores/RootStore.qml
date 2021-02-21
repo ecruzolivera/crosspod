@@ -5,6 +5,7 @@ import actions 1.0
 Store {
     readonly property string appName : "CrossPod"
 
+
     Filter{
         type: ActionTypes.startApp
         onDispatched: console.log("ActionTypes.startApp")

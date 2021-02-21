@@ -3,6 +3,6 @@ import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
 
 Pane {
-    property string name: qsTr("Discover")
+    property string name: qsTr("PlayList")
 
 }

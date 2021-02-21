@@ -19,12 +19,12 @@ ApplicationWindow {
         anchors.fill: parent
         currentIndex: tabBar.currentIndex
 
-        LibraryPage {
-            id: libraryPageId
+        PlayListPage {
+            id: playListPageId
         }
 
-        DiscoverPage {
-            id: discoverPageId
+        LibraryPage {
+            id: libraryPageId
         }
 
         SearchPage {
@@ -37,11 +37,11 @@ ApplicationWindow {
         currentIndex: swipeView.currentIndex
 
         TabButton {
-            text: libraryPageId.name
+            text: playListPageId.name
         }
 
         TabButton {
-            text: discoverPageId.name
+            text: libraryPageId.name
         }
 
         TabButton {
@@ -53,21 +53,19 @@ ApplicationWindow {
         RowLayout {
             anchors.horizontalCenter: parent.horizontalCenter
             ToolButton {
-                text: qsTr("<")
+                text: "<"
             }
             ToolButton {
                 text: "Play"
             }
             ToolButton {
-                text: qsTr(">")
+                text: ">"
             }
         }
     }
 
     MiddlewareList {
         applyTarget: AppDispatcher
-        SystemMiddleware {
-        }
+        SystemMiddleware {}
     }
-
 }
