@@ -13,4 +13,5 @@ cxx-build = "1.0.28"
 
 [dependencies]
 cxx = "1.0"
-
+podcast_search = "0.3.0"
+anyhow = "1.0.38"
