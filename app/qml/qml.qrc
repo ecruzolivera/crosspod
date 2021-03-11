@@ -19,5 +19,8 @@
         <file>ui/pages/SearchPage.qml</file>
         <file>ui/theme/qmldir</file>
         <file>ui/theme/Theme.qml</file>
+        <file>middlewares/PodcastMiddleware.qml</file>
+        <file>middlewares/ApiFixtures.qml</file>
+        <file>stores/PodcastStore.qml</file>
     </qresource>
 </RCC>

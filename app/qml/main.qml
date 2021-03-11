@@ -67,5 +67,6 @@ ApplicationWindow {
     MiddlewareList {
         applyTarget: AppDispatcher
         SystemMiddleware {}
+        PodcastMiddleware {}
     }
 }

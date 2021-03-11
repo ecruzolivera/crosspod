@@ -2,6 +2,7 @@ import QtQuick 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
 import actions 1.0
+import stores 1.0
 import ui.theme 1.0
 
 Pane {
@@ -11,7 +12,9 @@ Pane {
         Timer {
             id: debouncerTimerId
             interval: 500
-            onTriggered: console.log(searchId.text)
+            onTriggered: {
+                AppActions.search(searchId.text)
+            }
         }
 
         TextField {
@@ -31,7 +34,7 @@ Pane {
             width: parent.width
             spacing: Theme.spacing_sm
             clip: true
-            model: 10
+            model: MainStore.podcast.searchResult
             ScrollBar.vertical: ScrollBar {}
             delegate: MouseArea {
                 width: resultsId.width
@@ -40,29 +43,31 @@ Pane {
                 RowLayout {
                     width: resultsId.width
                     spacing: Theme.spacing_sm
-                    Rectangle {
-                        width: 75
-                        height: 75
-                        color: Qt.rgba(Math.random(), Math.random(),
-                                       Math.random(), 100)
+                    Image {
+                        Layout.preferredHeight: 75
+                        Layout.preferredWidth: 75
+                        asynchronous: true
+                        fillMode: Image.PreserveAspectFit
+                        source: modelData.image_url
                     }
                     Column {
                         Layout.fillWidth: true
                         Layout.alignment: Qt.AlignVCenter
                         spacing: Theme.spacing_sm / 2
                         Label {
-                            text: "Title " + index
+                            text: modelData.podcast_name
                             font.bold: true
                         }
                         Label {
-                            text: "Description Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod temporal" + index
+                            text: modelData.description
                             wrapMode: Label.WordWrap
+                            horizontalAlignment:Text.AlignJustify
                             width: parent.width
                         }
                     }
                     Button {
                         text: qsTr("Subscribe")
-                        onClicked: AppActions.subscribePodcast(index)
+                        onClicked: AppActions.subscribe(index)
                     }
                 }
             }

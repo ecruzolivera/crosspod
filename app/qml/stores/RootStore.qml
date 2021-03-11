@@ -1,20 +1,21 @@
-import QtQuick 2.0
+import QtQuick 2.15
 import QuickFlux 1.1
 import actions 1.0
 
 Store {
-    readonly property string appName : "CrossPod"
+    readonly property string appName: "CrossPod"
+    property bool isStarted: false
 
-
-    Filter{
+    Filter {
         type: ActionTypes.startApp
-        onDispatched: console.log("ActionTypes.startApp")
+        onDispatched: {
+            console.log("ActionTypes.startApp")
+            isStarted = true
+        }
     }
 
-    Filter{
-        type: ActionTypes.subscribePodcast
-        onDispatched: console.log("ActionTypes.subscribePodcast")
+    property alias podcast: podcastId
+    PodcastStore {
+        id: podcastId
     }
-
-
 }

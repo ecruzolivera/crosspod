@@ -1,2 +1,3 @@
+singleton ApiFixtures 1.0 ApiFixtures.qml
+PodcastMiddleware 1.0 PodcastMiddleware.qml
 SystemMiddleware 1.0 SystemMiddleware.qml
-
