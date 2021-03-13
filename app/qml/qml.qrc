@@ -6,21 +6,22 @@
         <file>constants/Constants.qml</file>
         <file>constants/qmldir</file>
         <file>main.qml</file>
+        <file>middlewares/ApiFixtures.qml</file>
+        <file>middlewares/PodcastMiddleware.qml</file>
         <file>middlewares/qmldir</file>
         <file>middlewares/SystemMiddleware.qml</file>
         <file>qtquickcontrols2.conf</file>
-        <file>stores/qmldir</file>
         <file>stores/MainStore.qml</file>
+        <file>stores/PodcastStore.qml</file>
+        <file>stores/qmldir</file>
         <file>stores/qmldir</file>
         <file>stores/RootStore.qml</file>
-        <file>ui/pages/PlayListPage.qml</file>
         <file>ui/pages/LibraryPage.qml</file>
+        <file>ui/pages/PlayListPage.qml</file>
         <file>ui/pages/qmldir</file>
         <file>ui/pages/SearchPage.qml</file>
         <file>ui/theme/qmldir</file>
         <file>ui/theme/Theme.qml</file>
-        <file>middlewares/PodcastMiddleware.qml</file>
-        <file>middlewares/ApiFixtures.qml</file>
-        <file>stores/PodcastStore.qml</file>
+        <file>Utils.js</file>
     </qresource>
 </RCC>

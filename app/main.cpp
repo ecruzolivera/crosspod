@@ -12,7 +12,9 @@ int main(int argc, char *argv[])
 #endif
 
     QGuiApplication app(argc, argv);
-
+    QCoreApplication::setOrganizationName("ecruzolivera");
+    QCoreApplication::setOrganizationDomain("ecruzolivera.tech");
+    QCoreApplication::setApplicationName("Crosspod");
     QQmlApplicationEngine engine;
     registerQuickFluxQmlTypes();
 
@@ -30,11 +32,6 @@ int main(int argc, char *argv[])
         Qt::QueuedConnection);
 
     auto dispatcher = QFAppDispatcher::instance(&engine);
-
-    QObject::connect(
-        dispatcher, &QFAppDispatcher::dispatched, &app, [](QString type, QJSValue message) {
-            qInfo() << "type: " << type << " content: " << message.toString();
-        });
 
     dispatcher->dispatch("startApp");
 

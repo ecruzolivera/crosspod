@@ -20,17 +20,17 @@
 <context>
     <name>SearchPage</name>
     <message>
-        <location filename="qml/ui/pages/SearchPage.qml" line="8"/>
+        <location filename="qml/ui/pages/SearchPage.qml" line="9"/>
         <source>Search</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/ui/pages/SearchPage.qml" line="21"/>
+        <location filename="qml/ui/pages/SearchPage.qml" line="24"/>
         <source>Search Podcast...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/ui/pages/SearchPage.qml" line="64"/>
+        <location filename="qml/ui/pages/SearchPage.qml" line="69"/>
         <source>Subscribe</source>
         <translation type="unfinished"></translation>
     </message>

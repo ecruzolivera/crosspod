@@ -44,8 +44,8 @@ Pane {
                     width: resultsId.width
                     spacing: Theme.spacing_sm
                     Image {
-                        Layout.preferredHeight: 75
-                        Layout.preferredWidth: 75
+                        Layout.preferredHeight: 100
+                        Layout.preferredWidth: 100
                         asynchronous: true
                         fillMode: Image.PreserveAspectFit
                         source: modelData.image_url
@@ -61,15 +61,20 @@ Pane {
                         Label {
                             text: modelData.description
                             wrapMode: Label.WordWrap
-                            horizontalAlignment:Text.AlignJustify
+                            horizontalAlignment: Text.AlignJustify
                             width: parent.width
                         }
                     }
                     Button {
-                        text: qsTr("Subscribe")
-                        onClicked: AppActions.subscribe(index)
+                        text: highlighted ? qsTr("Unsubscribe") : qsTr(
+                                                "Subscribe")
+                        onClicked: highlighted ? AppActions.unSubscribe(
+                                                     modelData.id) : AppActions.subscribe(
+                                                     modelData.id)
+                        highlighted: !!modelData.is_subscribed
                     }
                 }
+                Component.onCompleted: console.log(JSON.stringify(modelData))
             }
         }
     }

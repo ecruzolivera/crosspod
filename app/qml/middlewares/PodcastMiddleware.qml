@@ -23,7 +23,7 @@ Middleware {
     }
 
     function onSearch(term) {
-        const searchResults = ApiFixtures.getNormalizedSearchResult()
+        const searchResults = ApiFixtures.normalizedSearchResult
         next(ActionTypes.searchResults, {
                  "payload": searchResults
              })
