@@ -3,6 +3,9 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QuickFlux>
+#include <QSListModel>
+
+
 
 int main(int argc, char *argv[])
 {
@@ -17,6 +20,7 @@ int main(int argc, char *argv[])
     QCoreApplication::setApplicationName("Crosspod");
     QQmlApplicationEngine engine;
     registerQuickFluxQmlTypes();
+    registerQSyncableTypes();
 
     engine.addImportPath("qrc:/");
     const QUrl url(QStringLiteral("qrc:/main.qml"));

@@ -30,8 +30,15 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/ui/pages/SearchPage.qml" line="69"/>
+        <location filename="qml/ui/pages/SearchPage.qml" line="80"/>
+        <location filename="qml/ui/pages/SearchPage.qml" line="120"/>
         <source>Subscribe</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/ui/pages/SearchPage.qml" line="80"/>
+        <location filename="qml/ui/pages/SearchPage.qml" line="120"/>
+        <source>Unsubscribe</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

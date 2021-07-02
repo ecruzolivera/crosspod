@@ -2,6 +2,8 @@ import QtQuick 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
 import QuickFlux 1.1
+import QSyncable 1.0
+
 import middlewares 1.0
 import ui.pages 1.0
 import stores 1.0

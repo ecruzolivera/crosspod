@@ -7,6 +7,7 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
 include(cmake/FindQuickFlux.cmake)
+include(cmake/FindQSyncable.cmake)
 
 set(QML_IMPORT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/qml ${CMAKE_BINARY_DIR}/imports CACHE STRING "" FORCE)
 
@@ -33,7 +34,6 @@ find_package(
   REQUIRED)
 
 set(TS_FILES ${PROJECT_NAME}_en_US.ts)
-set(CPP_FILES)
 set(PROJECT_SOURCES main.cpp qml/qml.qrc ${TS_FILES} ${CPP_FILES})
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
@@ -53,7 +53,8 @@ target_compile_definitions(
   PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
 
 add_dependencies(${PROJECT_NAME} QuickFlux::quickflux)
+add_dependencies(${PROJECT_NAME} QSyncable)
 target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/cpp)
 target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Core
                                               Qt${QT_VERSION_MAJOR}::Quick)
-target_link_libraries(${PROJECT_NAME} PRIVATE QuickFlux::quickflux crosspod-rs)
+target_link_libraries(${PROJECT_NAME} PRIVATE QuickFlux::quickflux QSyncable)

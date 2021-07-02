@@ -13,6 +13,8 @@ KeyTable {
     property string searchResults
     property string subscribe
     property string unSubscribe
+    // Navigation
+    property string selectPodcast
     // File manager
     property string downloadTrack
     property string deleteFile
@@ -24,5 +26,4 @@ KeyTable {
     property string previous
     property string fastForward
     property string rewind
-
 }

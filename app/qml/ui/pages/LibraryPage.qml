@@ -5,5 +5,4 @@ import QtQuick.Layouts 1.15
 Pane {
     property string name: qsTr("Library")
 
-
 }

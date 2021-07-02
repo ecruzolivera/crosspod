@@ -79,4 +79,11 @@ ActionCreator {
                      "payload": {}
                  })
     }
+
+    // Navigation
+    function selectPodcast(id) {
+        dispatch(ActionTypes.selectPodcast, {
+                     "payload": id
+                 })
+    }
 }

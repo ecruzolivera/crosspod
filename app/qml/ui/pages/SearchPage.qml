@@ -26,55 +26,103 @@ Pane {
             onTextChanged: debouncerTimerId.restart()
         }
 
-        ListView {
-            id: resultsId
+        StackView {
+            id: stackViewId
+            width: parent.width
             anchors.top: searchId.bottom
             anchors.topMargin: Theme.spacing_sm
             anchors.bottom: parent.bottom
-            width: parent.width
-            spacing: Theme.spacing_sm
-            clip: true
-            model: MainStore.podcast.searchResult
-            ScrollBar.vertical: ScrollBar {}
-            delegate: MouseArea {
-                width: resultsId.width
-                height: childrenRect.height
-                onClicked: resultsId.currentIndex = index
-                RowLayout {
+            initialItem: resultsListViewId
+        }
+
+        Component {
+            id: resultsListViewId
+            ListView {
+                id: resultsId
+                anchors.fill: parent
+                spacing: Theme.spacing_sm
+                clip: true
+                model: MainStore.podcast.searchResult
+                ScrollBar.vertical: ScrollBar {}
+                delegate: MouseArea {
                     width: resultsId.width
-                    spacing: Theme.spacing_sm
-                    Image {
-                        Layout.preferredHeight: 100
-                        Layout.preferredWidth: 100
-                        asynchronous: true
-                        fillMode: Image.PreserveAspectFit
-                        source: modelData.image_url
+                    height: childrenRect.height
+                    onClicked: {
+                        AppActions.selectPodcast(modelData)
+                        stackViewId.push(selectedPodcastId)
                     }
-                    Column {
-                        Layout.fillWidth: true
-                        Layout.alignment: Qt.AlignVCenter
-                        spacing: Theme.spacing_sm / 2
-                        Label {
-                            text: modelData.podcast_name
-                            font.bold: true
+                    RowLayout {
+                        width: resultsId.width
+                        spacing: Theme.spacing_sm
+                        Image {
+                            Layout.preferredHeight: 100
+                            Layout.preferredWidth: 100
+                            asynchronous: true
+                            fillMode: Image.PreserveAspectFit
+                            source: modelData.image_url
                         }
-                        Label {
-                            text: modelData.description
-                            wrapMode: Label.WordWrap
-                            horizontalAlignment: Text.AlignJustify
-                            width: parent.width
+                        Column {
+                            Layout.fillWidth: true
+                            Layout.alignment: Qt.AlignVCenter
+                            spacing: Theme.spacing_sm / 2
+                            Label {
+                                text: modelData.podcast_name
+                                font.bold: true
+                            }
+                            Label {
+                                text: modelData.description
+                                wrapMode: Label.WordWrap
+                                horizontalAlignment: Text.AlignJustify
+                                width: parent.width
+                            }
                         }
-                    }
-                    Button {
-                        text: highlighted ? qsTr("Unsubscribe") : qsTr(
-                                                "Subscribe")
-                        onClicked: highlighted ? AppActions.unSubscribe(
-                                                     modelData.id) : AppActions.subscribe(
-                                                     modelData.id)
-                        highlighted: !!modelData.is_subscribed
+                        Button {
+                            text: highlighted ? qsTr("Unsubscribe") : qsTr(
+                                                    "Subscribe")
+                            onClicked: highlighted ? AppActions.unSubscribe(
+                                                         modelData.id) : AppActions.subscribe(
+                                                         modelData.id)
+                            highlighted: !!modelData.is_subscribed
+                        }
                     }
                 }
-                Component.onCompleted: console.log(JSON.stringify(modelData))
+            }
+        }
+        Component {
+            id: selectedPodcastId
+            ColumnLayout {
+                anchors.fill: parent
+                spacing: Theme.spacing_sm
+                property var selected: MainStore.podcast.selected
+                Image {
+                    Layout.preferredHeight: 100
+                    Layout.preferredWidth: 100
+                    asynchronous: true
+                    fillMode: Image.PreserveAspectFit
+                    source: selected.image_url
+                }
+                Column {
+                    Layout.fillWidth: true
+                    Layout.alignment: Qt.AlignVCenter
+                    spacing: Theme.spacing_sm / 2
+                    Label {
+                        text: selected.podcast_name
+                        font.bold: true
+                    }
+                    Label {
+                        text: selected.description
+                        wrapMode: Label.WordWrap
+                        horizontalAlignment: Text.AlignJustify
+                        width: parent.width
+                    }
+                }
+                Button {
+                    text: highlighted ? qsTr("Unsubscribe") : qsTr("Subscribe")
+                    onClicked: highlighted ? AppActions.unSubscribe(
+                                                 modelData.id) : AppActions.subscribe(
+                                                 modelData.id)
+                    highlighted: !!selected.is_subscribed
+                }
             }
         }
     }

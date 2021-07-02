@@ -9,10 +9,12 @@ Store {
     property var searchResult: ([])
     property bool searchResultReady: false
     property bool isSearching: false
-    property var subscribed: ([])
+    property var subscribedList: ([])
+    property var selected: ({})
 
-    onSearchResultChanged: console.log(JSON.stringify(searchResult))
-    onSubscribedChanged: console.log(JSON.stringify(subscribed))
+    Settings {
+        property alias subscribed: root.subscribedList
+    }
 
     Filter {
         type: ActionTypes.search
@@ -26,7 +28,7 @@ Store {
         type: ActionTypes.searchResults
         onDispatched: {
             root.isSearching = false
-            root.searchResult = message.payload || []
+            root.searchResult = Utils.getSafe(message.payload, [])
         }
     }
 
@@ -40,11 +42,10 @@ Store {
                 const podcastSubscribed = Object.assign(podcastToSubscribe, {
                                                             "is_subscribed": true
                                                         })
-                subscribed.push(podcastSubscribed)
+                subscribedList.push(podcastSubscribed)
                 searchResultChanged()
                 subscribedChanged()
             }
-
         }
     }
 
@@ -52,7 +53,7 @@ Store {
         type: ActionTypes.unSubscribe
         onDispatched: {
             const id = Utils.getSafe(message.payload, null)
-            subscribed = subscribed.filter(item => item.id !== id)
+            subscribedList = subscribedList.filter(item => item.id !== id)
             const podcastToUnsubscribe = searchResult.find(
                                            item => item.id === id)
             if (!!podcastToUnsubscribe) {
@@ -65,7 +66,10 @@ Store {
         }
     }
 
-    Settings {
-        property alias subscribed: root.subscribed
+    Filter {
+        type: ActionTypes.selectPodcast
+        onDispatched: {
+            selected = Utils.getSafe(message.payload, {})
+        }
     }
 }

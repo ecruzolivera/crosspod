@@ -17,11 +17,11 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # compiler options
 include(cmake/StandardProjectSettingsConfig.cmake)
 
-add_library(project_options_and_warnings INTERFACE)
-
 # standard compiler warnings
 include(cmake/CompilerOptionsAndWarningsConfig.cmake)
-set_project_options_and_warnings(project_options_and_warnings)
+set(project_options_and_warnings ${PROJECT_NAME}_project_options_and_warnings)
+add_library(${project_options_and_warnings} INTERFACE)
+set_project_options_and_warnings(${project_options_and_warnings})
 
 # enable doxygen
 include(cmake/DoxygenConfig.cmake)
@@ -34,10 +34,6 @@ enable_sanitizers(project_options_and_warnings)
 include(cmake/CppCheckConfig.cmake)
 include(cmake/ClangTidyConfig.cmake)
 # include(cmake/StaticAnalyzers.cmake)
-
-# Rust integration
-find_package(Corrosion REQUIRED)
-corrosion_import_crate(MANIFEST_PATH crosspod-rs/Cargo.toml)
 
 add_subdirectory(app)
 
